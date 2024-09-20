@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
+// user routes
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -23,5 +26,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// end
+
+// admin routes
+Route:: middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::clas, 'index'])->name('admin.dashboard');
+});
+
+// end
 
 require __DIR__.'/auth.php';
