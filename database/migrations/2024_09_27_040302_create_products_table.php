@@ -23,12 +23,12 @@ return new class extends Migration
             $table->boolean('published')->default(0);
             $table->boolean('inStock')->default(0);
             $table->decimal('price',10,2);
-            $table->foreignId(User::class, 'created_by')->nullable();
-            $table->foreignId(User::class, 'updated_by')->nullable();
-            $table->foreignId(Brand::class, 'brand_id')->nullable();
-            $table->foreignId(Category::class, 'category_id')->nullable();
+            $table->foreignIdFor(User::class, 'created_by')->nullable();
+            $table->foreignIdFor(User::class, 'updated_by')->nullable();
+            $table->foreignIdFor(Brand::class, 'brand_id')->nullable();
+            $table->foreignIdFor(Category::class, 'category_id')->nullable();
             $table->softDeletes();
-            $table->foreignId(User::class, 'deleted_by')->nullable();
+            $table->foreignIdFor(User::class, 'deleted_by')->nullable();
             $table->timestamps();
         });
     }
