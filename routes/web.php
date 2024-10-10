@@ -27,12 +27,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 // end
 
 // admin routes
 Route::group(['prefix' => 'admin', 'middleware' => 'redirectAdmin'], function() {
-    Route::get('login', [AdminAuthControllerer::class, 'showLoginForm'])->name('admin.login');
+    Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
     Route::post('login', [AdminAuthController::class, 'login'])->name('admin.login.post');
     Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
